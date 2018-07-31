@@ -10,6 +10,7 @@ import SplashScreen from '../screens/SplashScreen';
 import AuthScreen from '../screens/AuthScreen';
 import HomeScreen from '../screens/HomeScreen';
 import AddScreen from '../screens/AddScreen';
+import Colors from '../constants/Colors';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
@@ -21,17 +22,17 @@ const TabStack = createBottomTabNavigator({
             let iconName;
 
             if (routeName === 'Home') {
-                iconName = `ios-home${focused ? '' : '-outline'}`
-            } else if(routeName == 'Add') {
-                iconName = `ios-add-circle${focused ? '' : '-outline'}`
+                iconName = `ios-home${focused ? '' : '-outline'}`;
+            } else if (routeName === 'Add') {
+                iconName = `ios-add-circle${focused ? '' : '-outline'}`;
             }
 
             return <Icon type='ionicon' name={iconName} color={tintColor} size={25} />
         }
     }),
     tabBarOptions: {
-        activeTintColor: '#f73859',
-        inactiveTintColor: '#9fa6ad'
+        activeTintColor: Colors.red,
+        inactiveTintColor: Colors.grey
     }
 });
 
@@ -53,5 +54,5 @@ export default createSwitchNavigator({
     App: AppStack,
     Auth: AuthStack
 }, {
-    initialRouteName: 'App'
+    initialRouteName: 'Splash'
 });
