@@ -2,3 +2,5 @@ node_modules/**/*
 .expo/*
 npm-debug.*
 assets/fonts
+
+FbConfig.js

@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Facebook } from 'expo';
+
 import { Button } from 'react-native-elements';
 import Colors from '../constants/Colors';
+import FbConfig from '../FbConfig';
 
 class AuthScreen extends Component {
+
+    async testFacebookLogin() {
+        const { token, type } = await Facebook.logInWithReadPermissionsAsync(FbConfig.appId, 
+            { permissions: ['public_profile'] });
+        if (type === 'cancel') {
+            console.log('canceled');
+            return;
+        }
+
+        console.log(token);
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -11,6 +26,7 @@ class AuthScreen extends Component {
                 <Text style={styles.logoSubText}>Organize your meeting today!</Text>
                 <View style={styles.buttonContainer}>
                     <Button 
+                        onPress={this.testFacebookLogin.bind(this)}
                         raised
                         icon={{ name: 'facebook', type: 'font-awesome' }}
                         title='Continue With Facebook'
