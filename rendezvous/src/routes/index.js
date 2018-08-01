@@ -3,7 +3,7 @@ import {
     createSwitchNavigator,
     createStackNavigator, 
     createBottomTabNavigator 
-} from 'react-navigation'
+} from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 import SplashScreen from '../screens/SplashScreen';
@@ -15,7 +15,7 @@ import Colors from '../constants/Colors';
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
     Add: AddScreen
-},{
+}, {
     navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, tintColor }) => {
             const { routeName } = navigation.state;
@@ -27,7 +27,7 @@ const TabStack = createBottomTabNavigator({
                 iconName = `ios-add-circle${focused ? '' : '-outline'}`;
             }
 
-            return <Icon type='ionicon' name={iconName} color={tintColor} size={25} />
+            return <Icon type='ionicon' name={iconName} color={tintColor} size={25} />;
         }
     }),
     tabBarOptions: {
@@ -54,5 +54,5 @@ export default createSwitchNavigator({
     App: AppStack,
     Auth: AuthStack
 }, {
-    initialRouteName: 'Splash'
+        initialRouteName: 'Splash'
 });

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Font } from 'expo';
-import { Button } from 'react-native-elements';
+import { Spinner } from '../components';
 
 const FONT_PATH = '../../assets/fonts/Montserrat-Bold.ttf';
+const APP_LOGO = '../../assets/app_logo.png';
+
 class SplashScreen extends Component {
     
     constructor(props) {
@@ -18,6 +20,7 @@ class SplashScreen extends Component {
         try {
             await Font.loadAsync({ montserratBold: require(FONT_PATH) });
             this.setState({ fontLoaded: true });
+            this.props.navigation.navigate('Auth');
         } catch (e) {
             console.log(e);
         }
@@ -29,11 +32,8 @@ class SplashScreen extends Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={styles.fontTest}>SplashScreen</Text>
-                <Button 
-                    title='Nav'
-                    onPress={() => this.props.navigation.navigate('Auth')}
-                />
+                <Image source={require(APP_LOGO)} style={styles.logoStyle} />
+                <Spinner />
             </View>
         );
     }
@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    fontTest: {
-        fontFamily: 'montserratBold'
+    logoStyle: {
+        width: 150,
+        height: 150
     }
 });
 
