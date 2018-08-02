@@ -9,14 +9,8 @@ import FbConfig from '../FbConfig';
 class AuthScreen extends Component {
 
     async testFacebookLogin() {
-        const { token, type } = await Facebook.logInWithReadPermissionsAsync(FbConfig.appId, 
-            { permissions: ['public_profile'] });
-        if (type === 'cancel') {
-            console.log('canceled');
-            return;
-        }
+        
 
-        console.log(token);
     }
 
     render() {

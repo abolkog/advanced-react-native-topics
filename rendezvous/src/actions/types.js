@@ -1,0 +1,3 @@
+export const FB_ATTEMPTING = 'FB_ATTEMPTING';
+export const FB_LOGIN_SUCCESS = 'FB_LOGIN_SUCCESS';
+export const FB_LOGIN_FAILED = 'FB_LOGIN_FAILED';
