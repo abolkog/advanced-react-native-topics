@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Facebook } from 'expo';
-
+import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
+
+
+import { facebookLogin } from '../actions';
 import Colors from '../constants/Colors';
-import FbConfig from '../FbConfig';
 
 class AuthScreen extends Component {
 
-    async testFacebookLogin() {
-        
+    loginWithFacebook() {
+        this.props.facebookLogin();
+    }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.token) {
+            this.props.navigation.navigate('App');
+        }
     }
 
     render() {
@@ -20,11 +26,13 @@ class AuthScreen extends Component {
                 <Text style={styles.logoSubText}>Organize your meeting today!</Text>
                 <View style={styles.buttonContainer}>
                     <Button 
-                        onPress={this.testFacebookLogin.bind(this)}
+                        onPress={this.loginWithFacebook.bind(this)}
                         raised
                         icon={{ name: 'facebook', type: 'font-awesome' }}
                         title='Continue With Facebook'
                         buttonStyle={styles.buttonStyle}
+                        loading={this.props.loading}
+                        disabled={this.props.loading}
                     />
                 </View>
             </View>
@@ -58,4 +66,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AuthScreen;
+const maptStateToProps = ({ auth }) => {
+    return {
+        loading: auth.loading,
+        token: auth.token
+    };
+};
+export default connect(maptStateToProps, { facebookLogin })(AuthScreen);
