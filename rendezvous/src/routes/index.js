@@ -11,10 +11,12 @@ import AuthScreen from '../screens/AuthScreen';
 import HomeScreen from '../screens/HomeScreen';
 import AddScreen from '../screens/AddScreen';
 import Colors from '../constants/Colors';
+import SettingScreen from '../screens/SettingScreen';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
-    Add: AddScreen
+    Add: AddScreen,
+    Setting: SettingScreen
 }, {
     navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, tintColor }) => {
@@ -25,6 +27,8 @@ const TabStack = createBottomTabNavigator({
                 iconName = `ios-home${focused ? '' : '-outline'}`;
             } else if (routeName === 'Add') {
                 iconName = `ios-add-circle${focused ? '' : '-outline'}`;
+            } else if (routeName === 'Setting') {
+                iconName = `ios-options${focused ? '' : '-outline'}`;
             }
 
             return <Icon type='ionicon' name={iconName} color={tintColor} size={25} />;

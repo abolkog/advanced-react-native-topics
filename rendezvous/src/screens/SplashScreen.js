@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
 import { Font } from 'expo';
 import { Spinner } from '../components';
 
@@ -20,7 +20,14 @@ class SplashScreen extends Component {
         try {
             await Font.loadAsync({ montserratBold: require(FONT_PATH) });
             this.setState({ fontLoaded: true });
-            this.props.navigation.navigate('Auth');
+            
+            const token = await AsyncStorage.getItem('fb_token');
+            if (token) {
+                this.props.navigation.navigate('App');
+            } else {
+                this.props.navigation.navigate('Auth');
+            }
+            
         } catch (e) {
             console.log(e);
         }
