@@ -20,7 +20,7 @@ class SplashScreen extends Component {
         try {
             await Font.loadAsync({ montserratBold: require(FONT_PATH) });
             this.setState({ fontLoaded: true });
-            
+
             const token = await AsyncStorage.getItem('fb_token');
             if (token) {
                 this.props.navigation.navigate('App');

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-
+import { PersistGate } from 'redux-persist/integration/react';
 import Routes from './src/routes';
-import store from './src/store';
+import { store, persistedStore } from './src/store';
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Routes />
+        <PersistGate persistor={persistedStore}>
+          <Routes />
+        </PersistGate>
       </Provider>
     );
   }
