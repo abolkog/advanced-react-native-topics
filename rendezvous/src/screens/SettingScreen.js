@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
-import { Button, Avatar } from 'react-native-elements';
+import { Button, Avatar, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Colors from '../constants/Colors';
 
@@ -9,6 +9,31 @@ class SettingScreen extends Component {
     async logout() {
         await AsyncStorage.removeItem('fb_token');
         this.props.navigation.navigate('Auth');
+    }
+
+    showPhoneNumberStatus() {
+        let text = 'Confirm your phone number';
+        let icon = 'close-circle';
+        let disabled = false;
+        let colorName = Colors.grey;
+
+        const { profile } = this.props;
+        if (profile.confirmed) {
+            text = 'Phone Verified';
+            icon = 'checkmark-circle';
+            disabled = true;
+            colorName = Colors.red;
+        }
+
+        return (
+            <ListItem 
+                title={text}
+                rightIcon={<Icon type='ionicon' name={`ios-${icon}`} size={25} color={colorName}/>}
+                containerStyle={{ backgroundColor: Colors.white }}
+                disabled={disabled}
+                onPress={() => this.props.navigation.navigate('Confirm')}
+            />
+        );
     }
 
     render() {
@@ -24,6 +49,7 @@ class SettingScreen extends Component {
                     />
                     <Text style={styles.textStyle} > {profile.displayName} </Text>
                 </View>
+                { this.showPhoneNumberStatus() }
                 <View style={styles.buttonContainer}>
                     <Button
                         raised

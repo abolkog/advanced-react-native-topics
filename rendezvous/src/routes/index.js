@@ -12,6 +12,7 @@ import HomeScreen from '../screens/HomeScreen';
 import AddScreen from '../screens/AddScreen';
 import Colors from '../constants/Colors';
 import SettingScreen from '../screens/SettingScreen';
+import ConfirmPhoneScreen from '../screens/ConfirmPhoneScreen';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
@@ -41,7 +42,8 @@ const TabStack = createBottomTabNavigator({
 });
 
 const AppStack = createStackNavigator({
-    Main: TabStack
+    Main: TabStack,
+    Confirm: ConfirmPhoneScreen
 });
 
 const AuthStack = createStackNavigator({
