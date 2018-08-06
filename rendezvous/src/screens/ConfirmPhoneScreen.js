@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Alert, StyleSheet } from 'react-native';
 import { FormInput, FormLabel, Button } from 'react-native-elements';
 import axios from 'axios';
 
@@ -25,21 +25,39 @@ class ConfirmPhoneScreen extends Component {
                 this.setState({ loading: false, value: '', verifying: true });
             } else {
                 Alert.alert('Failed to get code');
+                this.setState({ loading: false });
             }
         } catch (e) {
             console.log(e);
+            this.setState({ loading: false });
         }
     }
 
-    verifyCode() {
+    verifyCode = async () => {
+        this.setState({ loading: true });
         const url = 'https://us-central1-rendezvous-521e6.cloudfunctions.net/verifyCode';
+        const profile = this.props.navigation.getParam('profile');
+        const code = parseInt(this.state.value, 10);
+        try {
+            const { data } = await axios.post(url, { code, uid: profile.uid }); 
+            if (data.success) {
+                this.setState({ loading: false, value: '', verifying: true });
+                this.props.navigation.goBack();
+            } else {
+                Alert.alert('Verification Failed');
+                this.setState({ loading: false });
+            }
+        } catch (e) {
+            console.log(e); 
+            this.setState({ loading: false });
+        }
     }
     render() {
         const { verifying, loading } = this.state;
         const title = verifying ? 'Enter Code' : 'Enter Phone Number';
         const btnTxt = verifying ? 'Verify Number' : 'Get Verification Code';
         const disabled = loading || !this.state.value;
-        const action = verifying ? this.verifyCode : this.getCode;
+        const action = verifying ? this.verifyCode.bind(this) : this.getCode.bind(this);
         return (
             <View style={styles.container}>
                 <FormLabel>{title}</FormLabel>
@@ -53,7 +71,7 @@ class ConfirmPhoneScreen extends Component {
                     containerViewStyle={{ marginTop: 10 }}
                     disabled={disabled}
                     loading={loading}
-                    onPress={action.bind(this)}
+                    onPress={action}
                 />
             </View>
         );
