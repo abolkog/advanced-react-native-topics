@@ -31,7 +31,7 @@ class SettingScreen extends Component {
                 rightIcon={<Icon type='ionicon' name={`ios-${icon}`} size={25} color={colorName}/>}
                 containerStyle={{ backgroundColor: Colors.white }}
                 disabled={disabled}
-                onPress={() => this.props.navigation.navigate('Confirm')}
+                onPress={() => this.props.navigation.navigate('Confirm', { profile: this.props.profile })}
             />
         );
     }
