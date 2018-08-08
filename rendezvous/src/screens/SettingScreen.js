@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
 import { Button, Avatar, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { refreshProfileData } from '../actions';
 import Colors from '../constants/Colors';
 
 class SettingScreen extends Component {
@@ -9,6 +10,11 @@ class SettingScreen extends Component {
     async logout() {
         await AsyncStorage.removeItem('fb_token');
         this.props.navigation.navigate('Auth');
+    }
+
+    refresh() {
+        const { profile } = this.props;
+        this.props.refreshProfileData(profile.uid);
     }
 
     showPhoneNumberStatus() {
@@ -31,7 +37,8 @@ class SettingScreen extends Component {
                 rightIcon={<Icon type='ionicon' name={`ios-${icon}`} size={25} color={colorName}/>}
                 containerStyle={{ backgroundColor: Colors.white }}
                 disabled={disabled}
-                onPress={() => this.props.navigation.navigate('Confirm', { profile: this.props.profile })}
+                onPress={() => this.props.navigation.navigate('Confirm',
+                     { profile: this.props.profile, onGoBack: () => this.refresh() })}
             />
         );
     }
@@ -97,4 +104,4 @@ const maptStateToProps = ({ auth }) => {
     };
 };
 
-export default connect(maptStateToProps)(SettingScreen);
+export default connect(maptStateToProps, { refreshProfileData })(SettingScreen);

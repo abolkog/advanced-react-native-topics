@@ -6,7 +6,8 @@ import FbConfig from '../FbConfig';
 import { 
     FB_ATTEMPTING,
     FB_LOGIN_FAILED,
-    FB_LOGIN_SUCCESS
+    FB_LOGIN_SUCCESS,
+    REFRESH_PROFILE
 } from './types';
 
 export const facebookLogin = () => {
@@ -33,8 +34,11 @@ const finishLogin = async (dispatch, token) => {
             await firebase.auth().signInAndRetrieveDataWithCredential(credential);
         
         //3- Save User Information
-        const profile = { displayName, photoURL, uid };
-        await firebase.database().ref(`users/${uid}`).set(profile);
+        let profile = { displayName, photoURL, uid };
+        await firebase.database().ref(`users/${uid}`).update(profile);
+        
+        const snap = await firebase.database().ref(`users/${uid}`).once('value');
+        profile = snap.val();
         
         //4- Save Token
         await AsyncStorage.setItem('fb_token', token);
@@ -46,4 +50,12 @@ const finishLogin = async (dispatch, token) => {
         return dispatch({ type: FB_LOGIN_FAILED });
     }
     
+};
+
+export const refreshProfileData = (uid) => {
+    return async (dispatch) => {
+        const snap = await firebase.database().ref(`users/${uid}`).once('value');
+        const profile = snap.val();
+        return dispatch({ type: REFRESH_PROFILE, payload: { profile } });
+    };
 };

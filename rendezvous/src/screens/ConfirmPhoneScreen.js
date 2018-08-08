@@ -35,14 +35,16 @@ class ConfirmPhoneScreen extends Component {
 
     verifyCode = async () => {
         this.setState({ loading: true });
+        const { navigation } = this.props;
         const url = 'https://us-central1-rendezvous-521e6.cloudfunctions.net/verifyCode';
-        const profile = this.props.navigation.getParam('profile');
+        const profile = navigation.getParam('profile');
         const code = parseInt(this.state.value, 10);
         try {
             const { data } = await axios.post(url, { code, uid: profile.uid }); 
             if (data.success) {
                 this.setState({ loading: false, value: '', verifying: true });
-                this.props.navigation.goBack();
+                navigation.state.params.onGoBack();
+                navigation.goBack();
             } else {
                 Alert.alert('Verification Failed');
                 this.setState({ loading: false });
