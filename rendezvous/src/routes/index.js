@@ -13,6 +13,7 @@ import OrganizeMeetingScreen from '../screens/OrganizeMeetingScreen';
 import Colors from '../constants/Colors';
 import SettingScreen from '../screens/SettingScreen';
 import ConfirmPhoneScreen from '../screens/ConfirmPhoneScreen';
+import SetLocationScreen from '../screens/SetLocationScreen';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
@@ -43,7 +44,8 @@ const TabStack = createBottomTabNavigator({
 
 const AppStack = createStackNavigator({
     Main: TabStack,
-    Confirm: ConfirmPhoneScreen
+    Confirm: ConfirmPhoneScreen,
+    Location: SetLocationScreen
 }, {
     navigationOptions: ({ navigation }) => {
         let curentRoute; let title;
