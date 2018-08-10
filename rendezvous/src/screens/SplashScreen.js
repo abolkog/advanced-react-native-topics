@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
-import { Font } from 'expo';
+import { Font, Permissions } from 'expo';
 import { Spinner } from '../components';
 
 const FONT_PATH = '../../assets/fonts/Montserrat-Bold.ttf';
@@ -20,6 +20,11 @@ class SplashScreen extends Component {
         try {
             await Font.loadAsync({ montserratBold: require(FONT_PATH) });
             this.setState({ fontLoaded: true });
+
+            const { status } = await Permissions.askAsync(Permissions.LOCATION);
+            if (status !== 'granted') {
+                console.log('Permission denied');
+            }
 
             const token = await AsyncStorage.getItem('fb_token');
             if (token) {
