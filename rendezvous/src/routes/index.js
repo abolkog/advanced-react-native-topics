@@ -9,14 +9,14 @@ import { Icon } from 'react-native-elements';
 import SplashScreen from '../screens/SplashScreen';
 import AuthScreen from '../screens/AuthScreen';
 import HomeScreen from '../screens/HomeScreen';
-import AddScreen from '../screens/AddScreen';
+import OrganizeMeetingScreen from '../screens/OrganizeMeetingScreen';
 import Colors from '../constants/Colors';
 import SettingScreen from '../screens/SettingScreen';
 import ConfirmPhoneScreen from '../screens/ConfirmPhoneScreen';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
-    Add: AddScreen,
+    Add: OrganizeMeetingScreen,
     Setting: SettingScreen
 }, {
     navigationOptions: ({ navigation }) => ({
@@ -44,6 +44,27 @@ const TabStack = createBottomTabNavigator({
 const AppStack = createStackNavigator({
     Main: TabStack,
     Confirm: ConfirmPhoneScreen
+}, {
+    navigationOptions: ({ navigation }) => {
+        let curentRoute; let title;
+        try {
+            curentRoute = navigation.state.routes[navigation.state.index].routeName;
+            title = curentRoute;
+            if (curentRoute === 'Home') {
+                title = 'Home';
+            }
+            if (curentRoute === 'Add') {
+                title = 'Organize Meeting';
+            }
+            if (curentRoute === 'Setting') {
+                title = 'Settings';
+            }
+        } catch (e) {
+            title = 'Randezvous';
+        }
+
+        return { title };
+    }
 });
 
 const AuthStack = createStackNavigator({

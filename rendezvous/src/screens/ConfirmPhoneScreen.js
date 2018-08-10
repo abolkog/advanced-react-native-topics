@@ -4,6 +4,9 @@ import { FormInput, FormLabel, Button } from 'react-native-elements';
 import axios from 'axios';
 
 class ConfirmPhoneScreen extends Component {
+    static navigationOptions = {
+        headerTitle: 'Confirm Phone'
+    }
     constructor(props) {
         super(props);
         this.state = {

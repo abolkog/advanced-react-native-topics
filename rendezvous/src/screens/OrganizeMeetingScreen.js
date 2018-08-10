@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-class AddScreen extends Component {
+class OrganizeMeetingScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>AddScreen</Text>
+                <Text>OrganizeMeetingScreen</Text>
             </View>
         );
     }
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddScreen;
+export default OrganizeMeetingScreen;
