@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
-import { MapView } from 'expo';
+import { MapView, Location } from 'expo';
 import { Spinner } from '../components';
 
 const { width, height } = Dimensions.get('window');
@@ -16,12 +16,16 @@ class SetLocationScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            initMap: true
+            initMap: true,
+            userLocation: {}
         };
     }
 
-    componentDidMount() {
-        this.setState({ initMap: false });
+    async componentDidMount() {
+        //getCurrentPositionAsync. 
+        const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync({});
+        const userLocation = { latitude, longitude };
+        this.setState({ initMap: false, userLocation });
     }
 
     render() {
@@ -29,13 +33,14 @@ class SetLocationScreen extends Component {
             return <Spinner />;
         }
 
+        const { userLocation } = this.state;
         return (
             <View style={styles.container}>
                 <MapView 
                     style={{ flex: 1 }}
                     initialRegion={{
-                        latitude: 48.85,
-                        longitude: 2.29,
+                        latitude: userLocation.latitude,
+                        longitude: userLocation.longitude,
                         latitudeDelta: LAT_DELTA,
                         longitudeDelta: LONG_DELTA
                     }}
