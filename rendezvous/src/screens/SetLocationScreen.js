@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, ScrollView } from 'react-native';
 import { MapView, Location } from 'expo';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button, List, ListItem } from 'react-native-elements';
 
 import { Spinner } from '../components';
 import Colors from '../constants/Colors';
@@ -24,6 +24,7 @@ class SetLocationScreen extends Component {
             userLocation: {},
             query: '',
             searchResult: null,
+            selectedLocation: null,
             btnDisabled: true
         };
     }
@@ -36,11 +37,41 @@ class SetLocationScreen extends Component {
     }
 
     search() {
+        //Replace with Google API Later on 
 
+        //Dummy Data
+        let searchResult = [];
+        for (let i = 0; i < 50; i++) {
+            searchResult[i] = { name: `Name ${i}`, address: `Address ${i}` };
+        }
+
+        this.setState({ searchResult });
     }
 
     toggleSearchResult() {
         if (!this.state.searchResult) return;
+
+        return (
+            <ScrollView style={{ height: 200, marginBottom: 20 }}>
+                <List containerStyle={{ marginHorizontal: 15 }}>
+                {
+                    this.state.searchResult.map((item, i) => (
+                        <ListItem 
+                            key={i}
+                            title={item.name}
+                            subtitle={item.address}
+                            leftIcon={{ name: 'ios-pin', type: 'ionicon' }}
+                            onPress={this.setSelectedLocation.bind(this, item)}
+                        />
+                    ))
+                }
+                </List>
+            </ScrollView>
+        );
+    }
+
+    setSelectedLocation(item) {
+        this.setState({ searchResult: null, selectedLocation: item });
     }
 
     render() {
