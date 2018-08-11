@@ -38,11 +38,10 @@ class SetLocationScreen extends Component {
 
     search() {
         //Replace with Google API Later on 
-
         //Dummy Data
         let searchResult = [];
         for (let i = 0; i < 50; i++) {
-            searchResult[i] = { name: `Name ${i}`, address: `Address ${i}` };
+            searchResult[i] = { name: `Name ${i}`, address: `Address ${i}`, latitude: 37.79203431960414, longitude: 126.70127335275188 };
         }
 
         this.setState({ searchResult });
@@ -72,8 +71,26 @@ class SetLocationScreen extends Component {
 
     setSelectedLocation(item) {
         this.setState({ searchResult: null, selectedLocation: item });
+
+        this.map.animateToRegion(
+            {
+                latitude: item.latitude,
+                longitude: item.longitude
+            },
+            350
+        );
     }
 
+    showMapMarker() {
+        if (!this.state.selectedLocation) return;
+        const { latitude, longitude, name } = this.state.selectedLocation;
+        return (
+            <MapView.Marker 
+                title={name}
+                coordinate={{ latitude, longitude }}
+            />
+        );
+    }
     render() {
         if (this.state.initMap) {
             return <Spinner />;
@@ -93,7 +110,8 @@ class SetLocationScreen extends Component {
                 { this.toggleSearchResult() }
 
                 <View style={{ height: 400, marginHorizontal: 15 }} >
-                    <MapView 
+                    <MapView
+                        ref={map => this.map = map }
                         style={{ flex: 1 }}
                         initialRegion={{
                             latitude: userLocation.latitude,
@@ -101,7 +119,10 @@ class SetLocationScreen extends Component {
                             latitudeDelta: LAT_DELTA,
                             longitudeDelta: LONG_DELTA
                         }}
-                    />
+                    >
+                        { this.showMapMarker() }
+
+                    </MapView>
                 </View>
 
                 <Button 
