@@ -50,15 +50,6 @@ class SetLocationScreen extends Component {
         } catch (e) {
             console.log(e);
         }
-
-        // //Replace with Google API Later on 
-        // //Dummy Data
-        // let searchResult = [];
-        // for (let i = 0; i < 50; i++) {
-        //     searchResult[i] = { name: `Name ${i}`, address: `Address ${i}`, latitude: 37.79203431960414, longitude: 126.70127335275188 };
-        // }
-
-        // this.setState({ searchResult });
     }
 
     toggleSearchResult() {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { FormInput, FormLabel, Button, ListItem, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import { saveMeeting } from '../actions';
 import Colors from '../constants/Colors';
 
 class OrganizeMeetingScreen extends Component {
@@ -15,14 +18,32 @@ class OrganizeMeetingScreen extends Component {
         this.setState({ location, btnDisabled: false });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.saved) {
+            Alert.alert('meeting created');
+            this.setState({ title: '', description: '', location: null });
+        }
+    }
+    onSave() {
+        const { title, description, location } = this.state;
+        const { profile } = this.props;
+        const meeting = { title, description, location, profile };
+        this.props.saveMeeting(meeting);
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <FormLabel>Title</FormLabel>
-                <FormInput onChangeText={(title) => this.setState({ title })} />
+                <FormInput 
+                    value={this.state.title}
+                    onChangeText={(title) => this.setState({ title })} 
+                />
 
+                    
                 <FormLabel>Description</FormLabel>
                 <FormInput 
+                    value={this.state.description}
                     multiline
                     onChangeText={(description) => this.setState({ description })} 
                 />
@@ -40,7 +61,9 @@ class OrganizeMeetingScreen extends Component {
                         title='Organize Meeting'
                         raised
                         buttonStyle={styles.buttonStyle}
-                        disabled={this.state.btnDisabled}
+                        disabled={this.state.btnDisabled || this.props.saving}
+                        loading={this.props.saving}
+                        onPress={this.onSave.bind(this)}
                     />
                 </View>
             </View>
@@ -65,4 +88,12 @@ const styles = StyleSheet.create({
     }
 });
 
-export default OrganizeMeetingScreen;
+const maptStateToProps = ({ organize, auth }) => {
+    return {
+        saving: organize.saving,
+        saved: organize.saved,
+        profile: auth.profile,
+    };
+};
+
+export default connect(maptStateToProps, { saveMeeting })(OrganizeMeetingScreen);
