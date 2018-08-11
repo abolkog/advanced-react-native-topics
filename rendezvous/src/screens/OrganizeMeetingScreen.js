@@ -11,6 +11,10 @@ class OrganizeMeetingScreen extends Component {
         btnDisabled: true
     };
 
+    onGoBack(location) {
+        this.setState({ location, btnDisabled: false });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -25,10 +29,10 @@ class OrganizeMeetingScreen extends Component {
 
                 <FormLabel>Location</FormLabel>
                 <ListItem 
-                    title='Set Location'
+                    title={this.state.location ? this.state.location.address : 'Set Location' }
                     rightIcon={<Icon name='ios-pin' type='ionicon' size={25} color={Colors.grey} />}
                     containerStyle={{ marginTop: 20, marginHorizontal: 5 }}
-                    onPress={() => this.props.navigation.navigate('Location')}
+                    onPress={() => this.props.navigation.navigate('Location', { onGoBack: this.onGoBack.bind(this) })}
                 />
 
                 <View style={styles.btnContainer}>

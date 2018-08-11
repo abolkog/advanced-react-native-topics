@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, ScrollView } from 'react-native';
 import { MapView, Location } from 'expo';
 import { FormLabel, FormInput, Button, List, ListItem } from 'react-native-elements';
+import axios from 'axios';
 
+import FbConfig from '../FbConfig';
 import { Spinner } from '../components';
 import Colors from '../constants/Colors';
 
@@ -36,15 +38,27 @@ class SetLocationScreen extends Component {
         this.setState({ initMap: false, userLocation });
     }
 
-    search() {
-        //Replace with Google API Later on 
-        //Dummy Data
-        let searchResult = [];
-        for (let i = 0; i < 50; i++) {
-            searchResult[i] = { name: `Name ${i}`, address: `Address ${i}`, latitude: 37.79203431960414, longitude: 126.70127335275188 };
+    search = async () => {
+
+        let endPoint = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
+        endPoint += this.state.query;
+        endPoint += `&key=${FbConfig.mapAPIKey}`;
+
+        try {
+            const { data } = await axios.get(endPoint);
+            this.setState({ searchResult: data.results });
+        } catch (e) {
+            console.log(e);
         }
 
-        this.setState({ searchResult });
+        // //Replace with Google API Later on 
+        // //Dummy Data
+        // let searchResult = [];
+        // for (let i = 0; i < 50; i++) {
+        //     searchResult[i] = { name: `Name ${i}`, address: `Address ${i}`, latitude: 37.79203431960414, longitude: 126.70127335275188 };
+        // }
+
+        // this.setState({ searchResult });
     }
 
     toggleSearchResult() {
@@ -58,7 +72,7 @@ class SetLocationScreen extends Component {
                         <ListItem 
                             key={i}
                             title={item.name}
-                            subtitle={item.address}
+                            subtitle={item.formatted_address}
                             leftIcon={{ name: 'ios-pin', type: 'ionicon' }}
                             onPress={this.setSelectedLocation.bind(this, item)}
                         />
@@ -70,12 +84,21 @@ class SetLocationScreen extends Component {
     }
 
     setSelectedLocation(item) {
-        this.setState({ searchResult: null, selectedLocation: item });
+        const { geometry: { location } } = item;
+       
+        const formattedItem = {
+            name: item.name,
+            address: item.formatted_address,
+            latitude: location.lat,
+            longitude: location.lng
+        };
+
+        this.setState({ searchResult: null, selectedLocation: formattedItem, btnDisabled: false });
 
         this.map.animateToRegion(
             {
-                latitude: item.latitude,
-                longitude: item.longitude
+                latitude: formattedItem.latitude,
+                longitude: formattedItem.longitude
             },
             350
         );
@@ -90,6 +113,12 @@ class SetLocationScreen extends Component {
                 coordinate={{ latitude, longitude }}
             />
         );
+    }
+
+    onLocationSelected() {
+        const { navigation } = this.props;
+        navigation.state.params.onGoBack(this.state.selectedLocation);
+        navigation.goBack();
     }
     render() {
         if (this.state.initMap) {
@@ -131,6 +160,7 @@ class SetLocationScreen extends Component {
                     containerViewStyle={{ marginTop: 10 }}
                     buttonStyle={{ backgroundColor: Colors.red }}
                     disabled={this.state.btnDisabled}
+                    onPress={this.onLocationSelected.bind(this)}
                 />
             </ScrollView>
         );
