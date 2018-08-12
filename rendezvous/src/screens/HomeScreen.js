@@ -56,7 +56,7 @@ class HomeScreen extends Component {
                 </View>
 
                 <MapView 
-                    ref={map => this.map = map }
+                    ref={(map) => { this.map = map; }}
                     style={styles.container}
                     initialRegion={initialRegion}
                 >
@@ -65,7 +65,7 @@ class HomeScreen extends Component {
                         <MapView.Marker 
                             key={index}
                             coordinate={meeting.location}
-                            onPress={() => this.props.navigation.navigate('Details')}
+                            onPress={() => this.props.navigation.navigate('Details', { selectedMeeting: meeting })}
                         />
                     );
                 })}

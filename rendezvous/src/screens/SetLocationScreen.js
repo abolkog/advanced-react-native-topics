@@ -131,7 +131,7 @@ class SetLocationScreen extends Component {
 
                 <View style={{ height: 400, marginHorizontal: 15 }} >
                     <MapView
-                        ref={map => this.map = map }
+                        ref={(map) => { this.map = map; }}
                         style={{ flex: 1 }}
                         initialRegion={{
                             latitude: userLocation.latitude,
