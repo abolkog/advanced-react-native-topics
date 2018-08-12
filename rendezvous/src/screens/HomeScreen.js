@@ -2,14 +2,27 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
+import { ListItem } from 'react-native-elements';
 
 import { Spinner } from '../components';
 import { fetchMeetings } from '../actions';
+import Colors from '../constants/Colors';
 
 class HomeScreen extends Component {
 
     componentWillMount() {
         this.props.fetchMeetings();
+    }
+
+    showMeetingMarker(meeting) {
+        
+        this.map.animateToRegion(
+            {
+                latitude: meeting.location.latitude,
+                longitude: meeting.location.longitude
+
+            }, 350
+        );
     }
 
     render() {
@@ -25,14 +38,25 @@ class HomeScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.cardWrap}>
-                    <ScrollView horizontal>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         { this.props.result.map((meeting, index) => {
-                            return <Text>{ meeting.title }</Text>;
+                            return (
+                                <View key={index} style={styles.card}>
+                                    <ListItem 
+                                        roundAvatar
+                                        avatar={{ uri: meeting.profile.photoURL }}
+                                        title={meeting.title}
+                                        subtitle={meeting.location.address}
+                                        onPress={this.showMeetingMarker.bind(this, meeting)}
+                                    />
+                                </View>
+                            );
                         })}
                     </ScrollView>
                 </View>
 
                 <MapView 
+                    ref={map => this.map = map }
                     style={styles.container}
                     initialRegion={initialRegion}
                 >
@@ -41,6 +65,7 @@ class HomeScreen extends Component {
                         <MapView.Marker 
                             key={index}
                             coordinate={meeting.location}
+                            onPress={() => this.props.navigation.navigate('Details')}
                         />
                     );
                 })}
@@ -58,6 +83,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 20,
         zIndex: 1
+    },
+    card: {
+        marginHorizontal: 5,
+        backgroundColor: Colors.white,
+        height: 50,
+        width: 200
     }
 });
 
