@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import Colors from '../constants/Colors';
 
-class Logo extends Component {
-    state = {
-        position: new Animated.ValueXY(0, 0)
-    }
+const APP_LOGO = '../../assets/app_logo.png';
 
-    componentWillMount() {
-        Animated.spring(this.state.position, {
-            toValue: { x: 300, y: 500 }
-        }).start();
-    }
+class Logo extends Component {
+   
     render() {
         return (
-            <Animated.View style={this.state.position.getLayout()}>
-                <View style={styles.ball} />
-            </Animated.View>
+            <View style={styles.container}>
+                <Image source={require(APP_LOGO)} style={styles.logoStyle} />
+                <Text style={styles.logoText}>Rendezvous</Text>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    ball: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: Colors.red
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
+    logoStyle: {
+        width: 150,
+        height: 150
+    },
+    logoText: {
+        fontSize: 40,
+        color: Colors.red,
+        fontFamily: 'montserratBold'
+
+    }
 });
 
 export default Logo;

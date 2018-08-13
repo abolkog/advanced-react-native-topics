@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
 import { Font, Permissions } from 'expo';
 import { Spinner } from '../components';
+import Logo from '../components/Logo';
 
 const FONT_PATH = '../../assets/fonts/Montserrat-Bold.ttf';
-const APP_LOGO = '../../assets/app_logo.png';
 
 class SplashScreen extends Component {
     
@@ -26,12 +26,12 @@ class SplashScreen extends Component {
                 console.log('Permission denied');
             }
 
-            const token = await AsyncStorage.getItem('fb_token');
-            if (token) {
-                this.props.navigation.navigate('App');
-            } else {
-                this.props.navigation.navigate('Auth');
-            }
+            // const token = await AsyncStorage.getItem('fb_token');
+            // if (token) {
+            //     this.props.navigation.navigate('App');
+            // } else {
+            //     this.props.navigation.navigate('Auth');
+            // }
             
         } catch (e) {
             console.log(e);
@@ -44,8 +44,7 @@ class SplashScreen extends Component {
         }
         return (
             <View style={styles.container}>
-                <Image source={require(APP_LOGO)} style={styles.logoStyle} />
-                <Spinner />
+                <Logo />
             </View>
         );
     }
