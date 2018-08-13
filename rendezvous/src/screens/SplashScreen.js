@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
+import { View, StyleSheet, AsyncStorage } from 'react-native';
 import { Font, Permissions } from 'expo';
-import { Spinner } from '../components';
 import Logo from '../components/Logo';
 
 const FONT_PATH = '../../assets/fonts/Montserrat-Bold.ttf';
@@ -25,16 +24,17 @@ class SplashScreen extends Component {
             if (status !== 'granted') {
                 console.log('Permission denied');
             }
-
-            // const token = await AsyncStorage.getItem('fb_token');
-            // if (token) {
-            //     this.props.navigation.navigate('App');
-            // } else {
-            //     this.props.navigation.navigate('Auth');
-            // }
-            
         } catch (e) {
             console.log(e);
+        }
+    }
+
+    startApp = async () => {
+        const token = await AsyncStorage.getItem('fb_token');
+        if (token) {
+            this.props.navigation.navigate('App');
+        } else {
+            this.props.navigation.navigate('Auth');
         }
     }
 
@@ -44,7 +44,7 @@ class SplashScreen extends Component {
         }
         return (
             <View style={styles.container}>
-                <Logo />
+                <Logo startApp={this.startApp.bind(this)} />
             </View>
         );
     }

@@ -15,20 +15,23 @@ class Logo extends Component {
     componentWillMount() {
         const { position, fadeAnim, springAnim } = this.state;
         
-        Animated.parallel([
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 1000
-            }),
-            Animated.timing(position, {
-                toValue: { x: 0, y: -20 },
-                duration: 1500
+        Animated.sequence([
+            Animated.parallel([
+                Animated.timing(fadeAnim, {
+                    toValue: 1,
+                    duration: 1000
+                }),
+                Animated.timing(position, {
+                    toValue: { x: 0, y: -20 },
+                    duration: 1500
+                })
+            ]),
+            Animated.spring(springAnim, {
+                toValue: 1
             })
-        ]).start();
-
-        Animated.spring(springAnim, {
-            toValue: 1
-        }).start();
+        ]).start(() => {
+            this.props.startApp();
+        });
 
     }
 
