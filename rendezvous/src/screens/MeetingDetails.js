@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { ListItem, Icon } from 'react-native-elements';
+import { Avatar, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import Colors from '../constants/Colors';
 
@@ -20,21 +20,24 @@ class MeetingDetails extends Component {
         }
         return (
             <ScrollView style={styles.container}>
-               <View style={styles.useWrap}>
-                    <ListItem
-                        roundAvatar
-                        avatar={{ uri: profile.photoURL }}
-                        title={profile.displayName}
-                    />
+                <View style={[styles.userWrap, { height: 60 }]}>
+                    <View style={{ marginLeft: 15 }}>
+                        <Avatar
+                            small
+                            rounded
+                            source={{ uri: profile.photoURL }}
+                        />
+                    </View>
+                    <Text style={styles.userTextStyle}> {profile.displayName}</Text>
                </View>
 
-               <View>
-                    <ListItem
-                        title={location.address}
-                        rightIcon={<Icon name='ios-pin' type='ionicon' size={25} color={Colors.grey} />}
-                        containerStyle={styles.useWrap}
-                    />
-               </View>
+                <View style={styles.userWrap}>
+                    <Text style={{ padding: 10 }}> {selectedMeeting.description}</Text>
+                </View>
+                
+                <View style={styles.userWrap}>
+                    <Text style={{ padding: 10 }}> {location.address}</Text>
+                </View>
 
                <View style={{ flex: 1, height: 300, marginHorizontal: 20, marginTop: 30 }}>
                 <MapView 
@@ -57,10 +60,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    useWrap: {
-        backgroundColor: Colors.white,
+    userWrap: {
         marginHorizontal: 20,
-        marginTop: 10
+        marginTop: 10,
+        backgroundColor: Colors.white,
+        borderRadius: 5,
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    userTextStyle: {
+        fontSize: 15,
+        marginLeft: 10,
+        color: Colors.grey
     }
 });
 

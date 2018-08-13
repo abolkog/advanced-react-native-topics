@@ -1,6 +1,6 @@
 import { MEETINGS_FETCHED } from '../actions/types';
 
-const INITIAL_STATE = { fetching: false, result: [] };
+const INITIAL_STATE = { fetching: true, result: [] };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {

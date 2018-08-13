@@ -15,6 +15,7 @@ import SettingScreen from '../screens/SettingScreen';
 import ConfirmPhoneScreen from '../screens/ConfirmPhoneScreen';
 import SetLocationScreen from '../screens/SetLocationScreen';
 import MeetingDetails from '../screens/MeetingDetails';
+import TestScreen from '../screens/TestScreen';
 
 const TabStack = createBottomTabNavigator({
     Home: HomeScreen,
@@ -81,9 +82,10 @@ const AuthStack = createStackNavigator({
 });
 
 export default createSwitchNavigator({
+    Test: TestScreen,
     Splash: SplashScreen,
     App: AppStack,
     Auth: AuthStack
 }, {
-        initialRouteName: 'Splash'
+        initialRouteName: 'Test'
 });
