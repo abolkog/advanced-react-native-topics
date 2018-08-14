@@ -9,7 +9,7 @@ class Logo extends Component {
     state = {
         position: new Animated.ValueXY(0, 0),
         fadeAnim: new Animated.Value(0),
-        springAnim: new Animated.Value(0)
+        springAnim: new Animated.Value(0.01) //For android, 0 sometimes is ignored
     }
 
     componentWillMount() {
