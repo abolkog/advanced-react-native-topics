@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { MapView } from 'expo';
+import { View, StyleSheet, ScrollView, Alert } from 'react-native';
+import { MapView, Notifications } from 'expo';
 import { connect } from 'react-redux';
 import { ListItem } from 'react-native-elements';
 
@@ -20,7 +20,19 @@ class HomeScreen extends Component {
         const { profile } = this.props;
         registerForPushNotificationsAsync(profile.uid);
 
+        Notifications.addListener(this.handleNotification);
     }
+
+    handleNotification = (notification) => {
+        console.log(notification);
+        if (notification && notification.origin === 'received') {
+            //User is in forground
+            //Handle here alert();
+            Alert.alert('New Message');
+        }
+    }
+
+
     showMeetingMarker(meeting) {
         
         this.map.animateToRegion(
