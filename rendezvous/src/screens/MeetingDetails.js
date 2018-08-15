@@ -19,7 +19,7 @@ class MeetingDetails extends Component {
     }
 
     render() {
-        if (this.props.loading || !this.props.meeting) {
+        if (this.props.loading) {
             return <Spinner />;
         }
 

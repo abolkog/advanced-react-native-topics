@@ -5,7 +5,7 @@ const INITIAL_STATE = { fetching: true, result: [], loading: false, meeting: nul
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
        case MEETINGS_FETCHED:
-            return { fetching: false, result: action.payload };
+            return { ...state, fetching: false, result: action.payload };
         case SINGLE_FETCHING:
             return { ...state, loading: true };
         case SINGLE_DONE: 
