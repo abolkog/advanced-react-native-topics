@@ -42,6 +42,7 @@ const finishLogin = async (dispatch, token) => {
         
         //4- Save Token
         await AsyncStorage.setItem('fb_token', token);
+        // await AsyncStorage.setItem('user_id', uid);
 
         //Auth Logic Completed
         return dispatch({ type: FB_LOGIN_SUCCESS, payload: { token, profile } });

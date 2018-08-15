@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { ListItem } from 'react-native-elements';
@@ -7,6 +7,8 @@ import { ListItem } from 'react-native-elements';
 import { Spinner } from '../components';
 import { fetchMeetings } from '../actions';
 import Colors from '../constants/Colors';
+import { registerForPushNotificationsAsync } from '../services';
+
 
 class HomeScreen extends Component {
 
@@ -14,6 +16,11 @@ class HomeScreen extends Component {
         this.props.fetchMeetings();
     }
 
+    componentDidMount() {
+        const { profile } = this.props;
+        registerForPushNotificationsAsync(profile.uid);
+
+    }
     showMeetingMarker(meeting) {
         
         this.map.animateToRegion(
@@ -92,10 +99,11 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = ({ meetings }) => {
+const mapStateToProps = ({ meetings, auth }) => {
     return {
         fetching: meetings.fetching,
-        result: meetings.result
+        result: meetings.result,
+        profile: auth.profile
     };
 };
 export default connect(mapStateToProps, { fetchMeetings })(HomeScreen);
