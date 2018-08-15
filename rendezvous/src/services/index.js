@@ -24,7 +24,7 @@ const registerForPushNotificationsAsync = async (uid) => {
     try {
         // Get the token that uniquely identifies this device
         const token = await Notifications.getExpoPushTokenAsync();
-        console.log(token);
+        // console.log(token);
         //Save the token to firebase
         await firebase.database().ref(`users/${uid}`).update({ pushToken: token });
 

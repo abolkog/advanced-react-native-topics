@@ -84,7 +84,7 @@ class HomeScreen extends Component {
                         <MapView.Marker 
                             key={index}
                             coordinate={meeting.location}
-                            onPress={() => this.props.navigation.navigate('Details', { selectedMeeting: meeting })}
+                            onPress={() => this.props.navigation.navigate('Details', { meetingId: meeting.id })}
                         />
                     );
                 })}

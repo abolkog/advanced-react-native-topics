@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Avatar, Icon } from 'react-native-elements';
+import { Avatar } from 'react-native-elements';
 import { MapView } from 'expo';
+import { connect } from 'react-redux';
+import { fetchSingleMeeting } from '../actions';
+
 import Colors from '../constants/Colors';
+import { Spinner } from '../components';
 
 class MeetingDetails extends Component {
     static navigationOptions = {
         headerTitle: 'Meeting Details'
     }
 
+    componentWillMount() {
+        const meetingId = this.props.navigation.getParam('meetingId');
+        this.props.fetchSingleMeeting(meetingId);
+    }
+
     render() {
-        const selectedMeeting = this.props.navigation.getParam('selectedMeeting');
+        if (this.props.loading || !this.props.meeting) {
+            return <Spinner />;
+        }
+
+
+        const selectedMeeting = this.props.meeting;
         const { profile, location } = selectedMeeting;
         const initialRegion = {
             latitude: location.latitude,
             longitude: location.longitude,
             latitudeDelta: 0.048,
             longitudeDelta: 0.048,
-        }
+        };
+
         return (
             <ScrollView style={styles.container}>
                 <View style={[styles.userWrap, { height: 60 }]}>
@@ -75,4 +90,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MeetingDetails;
+const mapStateToProps = ({ meetings }) => {
+    return {
+        loading: meetings.loading,
+        meeting: meetings.meeting
+    };
+};
+export default connect(mapStateToProps, { fetchSingleMeeting })(MeetingDetails);
