@@ -1,0 +1,259 @@
+[debug] [2018-08-16T13:13:46.766Z] ----------------------------------------------------------------------
+[debug] [2018-08-16T13:13:46.767Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-08-16T13:13:46.767Z] CLI Version:   4.0.2
+[debug] [2018-08-16T13:13:46.768Z] Platform:      darwin
+[debug] [2018-08-16T13:13:46.768Z] Node Version:  v8.9.1
+[debug] [2018-08-16T13:13:46.768Z] Time:          Thu Aug 16 2018 22:13:46 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:46.768Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-16T13:13:46.776Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-16T13:13:46.776Z] > authorizing via signed-in user
+[debug] [2018-08-16T13:13:46.777Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/rendezvous-521e6  
+  
+ Thu Aug 16 2018 22:13:46 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:47.629Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:47.629Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/rendezvous-521e6/tokens  
+  
+ Thu Aug 16 2018 22:13:47 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:48.585Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'rendezvous-521e6'...
+[info] 
+[info] i  deploying functions
+[debug] [2018-08-16T13:13:50.728Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.13.0",
+    "firebase-functions": "^2.0.0",
+    "twilio": "^3.19.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-08-16T13:13:50.728Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/rendezvous-521e6?view=CONSUMER_VIEW  
+  
+ Thu Aug 16 2018 22:13:50 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:50.729Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/rendezvous-521e6?view=CONSUMER_VIEW  
+  
+ Thu Aug 16 2018 22:13:50 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:52.288Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:52.343Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2018-08-16T13:13:52.343Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/rendezvous-521e6  
+  
+ Thu Aug 16 2018 22:13:52 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:53.500Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:53.501Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/752381900404:getServerAppConfig  
+  
+ Thu Aug 16 2018 22:13:53 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:53.966Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-08-16T13:13:53.967Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/rendezvous-521e6/configs  
+  
+ Thu Aug 16 2018 22:13:53 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:54.349Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (44.58 KB) for uploading
+[debug] [2018-08-16T13:13:54.861Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/us-central1/functions:generateUploadUrl  
+  
+ Thu Aug 16 2018 22:13:54 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:55.651Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:55.652Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-4cc8072e-c601-4928-aa71-f928e7ff306b/a0a96e84-8863-419e-b1be-b8f7eb6c4f9f.zip?GoogleAccessId=service-752381900404@gcf-admin-robot.iam.gserviceaccount.com&Expires=1534427035&Signature=UUg45oC5UDZAczzRkG8YOqg7MFz26bkRtIxzz4m1VjcHu3KIs4GJV80ztSe20nhrN60P7vHYEg23wTfnpzqP0amIhFGz8r2vqvVIJGdRK%2B1PcTGS0Fp2lHGV6Ew6JIR%2FpHUKwaKK7%2FFWeJlAo1IxjQDspA%2FlbTb3%2Blx5Uus7d1rntwLM1%2B9XX0PIHkQlD3ekufR%2BjvKS7pNg0i4cazlAGqimxLaYkgupQU95Oe%2FvBX4WPvUBArbznlRMmWYE8LL8Rhb4L3p2AJ0HQZqcaPvTAdIMLovhvoGgXNtwaidKsOe6qsU57BUUli39BWDQ1peLj0LO1Sy3ZnuJv%2FHrmKvzlg%3D%3D  
+ ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 45647,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/xv/y5lsmn5s1f38q_9nj94xkp7h0000gn/T/firebase-functions-57030zxajzWN954vC.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 45647 } 
+ Thu Aug 16 2018 22:13:55 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:56.593Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[debug] [2018-08-16T13:13:56.594Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/-/functions  
+  
+ Thu Aug 16 2018 22:13:56 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:57.494Z] <<< HTTP RESPONSE 200
+[info] i  functions: creating Node.js 6 function sendPushNotifications(us-central1)...
+[debug] [2018-08-16T13:13:57.496Z] Trigger is:  {"eventTrigger":{"resource":"projects/_/instances/rendezvous-521e6/refs/meeting/{meetingId}","eventType":"providers/google.firebase.database/eventTypes/ref.create","service":"firebaseio.com"}}
+[info] i  functions: updating Node.js 6 function genCode(us-central1)...
+[debug] [2018-08-16T13:13:57.496Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  functions: updating Node.js 6 function verifyCode(us-central1)...
+[debug] [2018-08-16T13:13:57.497Z] Trigger is:  {"httpsTrigger":{}}
+[debug] [2018-08-16T13:13:57.498Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/us-central1/functions  
+ { sourceUploadUrl: 'https://storage.googleapis.com/gcf-upload-us-central1-4cc8072e-c601-4928-aa71-f928e7ff306b/a0a96e84-8863-419e-b1be-b8f7eb6c4f9f.zip?GoogleAccessId=service-752381900404@gcf-admin-robot.iam.gserviceaccount.com&Expires=1534427035&Signature=UUg45oC5UDZAczzRkG8YOqg7MFz26bkRtIxzz4m1VjcHu3KIs4GJV80ztSe20nhrN60P7vHYEg23wTfnpzqP0amIhFGz8r2vqvVIJGdRK%2B1PcTGS0Fp2lHGV6Ew6JIR%2FpHUKwaKK7%2FFWeJlAo1IxjQDspA%2FlbTb3%2Blx5Uus7d1rntwLM1%2B9XX0PIHkQlD3ekufR%2BjvKS7pNg0i4cazlAGqimxLaYkgupQU95Oe%2FvBX4WPvUBArbznlRMmWYE8LL8Rhb4L3p2AJ0HQZqcaPvTAdIMLovhvoGgXNtwaidKsOe6qsU57BUUli39BWDQ1peLj0LO1Sy3ZnuJv%2FHrmKvzlg%3D%3D',
+  name: 'projects/rendezvous-521e6/locations/us-central1/functions/sendPushNotifications',
+  entryPoint: 'sendPushNotifications',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  runtime: 'nodejs6',
+  eventTrigger: 
+   { resource: 'projects/_/instances/rendezvous-521e6/refs/meeting/{meetingId}',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.create',
+     service: 'firebaseio.com' } } 
+ Thu Aug 16 2018 22:13:57 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:57.499Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/us-central1/functions/genCode 
+query params: {"updateMask":"sourceUploadUrl,name,labels,httpsTrigger"} 
+ { sourceUploadUrl: 'https://storage.googleapis.com/gcf-upload-us-central1-4cc8072e-c601-4928-aa71-f928e7ff306b/a0a96e84-8863-419e-b1be-b8f7eb6c4f9f.zip?GoogleAccessId=service-752381900404@gcf-admin-robot.iam.gserviceaccount.com&Expires=1534427035&Signature=UUg45oC5UDZAczzRkG8YOqg7MFz26bkRtIxzz4m1VjcHu3KIs4GJV80ztSe20nhrN60P7vHYEg23wTfnpzqP0amIhFGz8r2vqvVIJGdRK%2B1PcTGS0Fp2lHGV6Ew6JIR%2FpHUKwaKK7%2FFWeJlAo1IxjQDspA%2FlbTb3%2Blx5Uus7d1rntwLM1%2B9XX0PIHkQlD3ekufR%2BjvKS7pNg0i4cazlAGqimxLaYkgupQU95Oe%2FvBX4WPvUBArbznlRMmWYE8LL8Rhb4L3p2AJ0HQZqcaPvTAdIMLovhvoGgXNtwaidKsOe6qsU57BUUli39BWDQ1peLj0LO1Sy3ZnuJv%2FHrmKvzlg%3D%3D',
+  name: 'projects/rendezvous-521e6/locations/us-central1/functions/genCode',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Aug 16 2018 22:13:57 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:57.500Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/us-central1/functions/verifyCode 
+query params: {"updateMask":"sourceUploadUrl,name,labels,httpsTrigger"} 
+ { sourceUploadUrl: 'https://storage.googleapis.com/gcf-upload-us-central1-4cc8072e-c601-4928-aa71-f928e7ff306b/a0a96e84-8863-419e-b1be-b8f7eb6c4f9f.zip?GoogleAccessId=service-752381900404@gcf-admin-robot.iam.gserviceaccount.com&Expires=1534427035&Signature=UUg45oC5UDZAczzRkG8YOqg7MFz26bkRtIxzz4m1VjcHu3KIs4GJV80ztSe20nhrN60P7vHYEg23wTfnpzqP0amIhFGz8r2vqvVIJGdRK%2B1PcTGS0Fp2lHGV6Ew6JIR%2FpHUKwaKK7%2FFWeJlAo1IxjQDspA%2FlbTb3%2Blx5Uus7d1rntwLM1%2B9XX0PIHkQlD3ekufR%2BjvKS7pNg0i4cazlAGqimxLaYkgupQU95Oe%2FvBX4WPvUBArbznlRMmWYE8LL8Rhb4L3p2AJ0HQZqcaPvTAdIMLovhvoGgXNtwaidKsOe6qsU57BUUli39BWDQ1peLj0LO1Sy3ZnuJv%2FHrmKvzlg%3D%3D',
+  name: 'projects/rendezvous-521e6/locations/us-central1/functions/verifyCode',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Aug 16 2018 22:13:57 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:58.108Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:58.109Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:58.153Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:58.154Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/rendezvous-521e6/locations/-/functions  
+  
+ Thu Aug 16 2018 22:13:58 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:58.820Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:58.821Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9zZW5kUHVzaE5vdGlmaWNhdGlvbnMvQ0syUENvZExoTk0  
+  
+ Thu Aug 16 2018 22:13:58 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:58.821Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:13:58 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:58.821Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:13:58 GMT+0900 (KST)
+[debug] [2018-08-16T13:13:59.338Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:59.338Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:13:59.354Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:01.341Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9zZW5kUHVzaE5vdGlmaWNhdGlvbnMvQ0syUENvZExoTk0  
+  
+ Thu Aug 16 2018 22:14:01 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:01.341Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:14:01 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:01.354Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:01 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:01.651Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:01.885Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:01.908Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:03.655Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:03 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:03.888Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:14:03 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:03.910Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9zZW5kUHVzaE5vdGlmaWNhdGlvbnMvQ0syUENvZExoTk0  
+  
+ Thu Aug 16 2018 22:14:03 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:03.940Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:04.180Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:04.392Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:05.946Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:05 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:06.186Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:14:06 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:06.395Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9zZW5kUHVzaE5vdGlmaWNhdGlvbnMvQ0syUENvZExoTk0  
+  
+ Thu Aug 16 2018 22:14:06 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:06.468Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:06.677Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:07.017Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:08.472Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:08 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:08.682Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:14:08 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:08.969Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:09.021Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9zZW5kUHVzaE5vdGlmaWNhdGlvbnMvQ0syUENvZExoTk0  
+  
+ Thu Aug 16 2018 22:14:09 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:09.215Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:09.782Z] <<< HTTP RESPONSE 200
+[warn] ⚠  functions[sendPushNotifications(us-central1)]: Deployment error.
+[info] Function load error: Code in file index.js can't be loaded.
+Did you list all required modules in the package.json dependencies?
+Detailed stack trace: Error: Cannot find module 'node-fetch'
+    at Function.Module._resolveFilename (module.js:476:15)
+    at Function.Module._load (module.js:424:25)
+    at Module.require (module.js:504:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (/user_code/index.js:5:15)
+    at Module._compile (module.js:577:32)
+    at Object.Module._extensions..js (module.js:586:10)
+    at Module.load (module.js:494:32)
+    at tryModuleLoad (module.js:453:12)
+    at Function.Module._load (module.js:445:3)
+[debug] [2018-08-16T13:14:10.973Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:10 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:11.218Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS92ZXJpZnlDb2RlL0trRWhrNU5fb1A4  
+  
+ Thu Aug 16 2018 22:14:11 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:11.509Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:11.734Z] <<< HTTP RESPONSE 200
+[warn] ⚠  functions[verifyCode(us-central1)]: Deployment error.
+[info] Function load error: Code in file index.js can't be loaded.
+Did you list all required modules in the package.json dependencies?
+Detailed stack trace: Error: Cannot find module 'node-fetch'
+    at Function.Module._resolveFilename (module.js:476:15)
+    at Function.Module._load (module.js:424:25)
+    at Module.require (module.js:504:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (/user_code/index.js:5:15)
+    at Module._compile (module.js:577:32)
+    at Object.Module._extensions..js (module.js:586:10)
+    at Module.load (module.js:494:32)
+    at tryModuleLoad (module.js:453:12)
+    at Function.Module._load (module.js:445:3)
+[debug] [2018-08-16T13:14:13.512Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:13 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:13.990Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:15.994Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:15 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:16.541Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-16T13:14:18.544Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cmVuZGV6dm91cy01MjFlNi91cy1jZW50cmFsMS9nZW5Db2RlL1djcUxxSUdhaEpF  
+  
+ Thu Aug 16 2018 22:14:18 GMT+0900 (KST)
+[debug] [2018-08-16T13:14:19.305Z] <<< HTTP RESPONSE 200

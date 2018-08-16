@@ -14,6 +14,7 @@ class HomeScreen extends Component {
 
     componentWillMount() {
         this.props.fetchMeetings();
+        
     }
 
     componentDidMount() {
@@ -24,11 +25,13 @@ class HomeScreen extends Component {
     }
 
     handleNotification = (notification) => {
-        console.log(notification);
-        if (notification && notification.origin === 'received') {
-            //User is in forground
-            //Handle here alert();
-            Alert.alert('New Message');
+        if (notification && notification.origin !== 'received') {
+            const { data } = notification;
+            const meetingId = data.meetingId;
+
+            if (meetingId) {
+                this.props.navigation.navigate('Details', { meetingId });
+            }
         }
     }
 
