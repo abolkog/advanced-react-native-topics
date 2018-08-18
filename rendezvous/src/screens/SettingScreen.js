@@ -4,6 +4,7 @@ import { Button, Avatar, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { refreshProfileData } from '../actions';
 import Colors from '../constants/Colors';
+import I18n from '../../locales/i18n';
 
 class SettingScreen extends Component {
     
@@ -60,7 +61,7 @@ class SettingScreen extends Component {
                 <View style={styles.buttonContainer}>
                     <Button
                         raised
-                        title='Logout'
+                        title={I18n.t('logout', { defaultValue: 'Logout' })}
                         buttonStyle={styles.buttonStyle}
                         onPress={this.logout.bind(this)}
                     />
