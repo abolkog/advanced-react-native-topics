@@ -15,6 +15,7 @@ import SettingScreen from '../screens/SettingScreen';
 import ConfirmPhoneScreen from '../screens/ConfirmPhoneScreen';
 import SetLocationScreen from '../screens/SetLocationScreen';
 import MeetingDetails from '../screens/MeetingDetails';
+import LanguageScreen from '../screens/LanguageScreen';
 
 
 const TabStack = createBottomTabNavigator({
@@ -48,7 +49,8 @@ const AppStack = createStackNavigator({
     Main: TabStack,
     Confirm: ConfirmPhoneScreen,
     Location: SetLocationScreen,
-    Details: MeetingDetails
+    Details: MeetingDetails,
+    Language: LanguageScreen
 }, {
     navigationOptions: ({ navigation }) => {
         let curentRoute; let title;

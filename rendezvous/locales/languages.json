@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "locale": "en",
+        "name": "English"
+    },
+    {
+        "id": 1,
+        "locale": "ar",
+        "name": "العربية"
+    }
+]

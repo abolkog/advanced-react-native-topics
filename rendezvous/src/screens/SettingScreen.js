@@ -57,7 +57,16 @@ class SettingScreen extends Component {
                     />
                     <Text style={styles.textStyle} > {profile.displayName} </Text>
                 </View>
+                
                 { this.showPhoneNumberStatus() }
+
+                <ListItem 
+                    title='Language'
+                    containerStyle={{ backgroundColor: Colors.white, marginTop: 20 }}
+                    rightIcon={{ name: 'ios-globe', type: 'ionicon', size: 25, color: Colors.red }}
+                    onPress={() => this.props.navigation.navigate('Language')}
+                />
+
                 <View style={styles.buttonContainer}>
                     <Button
                         raised
