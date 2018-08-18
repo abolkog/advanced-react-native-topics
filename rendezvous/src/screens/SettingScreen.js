@@ -8,6 +8,10 @@ import I18n from '../../locales/i18n';
 
 class SettingScreen extends Component {
     
+    componentWillMount() {
+        I18n.locale = this.props.locale;
+    }
+    
     async logout() {
         await AsyncStorage.removeItem('fb_token');
         this.props.navigation.navigate('Auth');
@@ -108,9 +112,10 @@ const styles = StyleSheet.create({
 });
 
 
-const maptStateToProps = ({ auth }) => {
+const maptStateToProps = ({ auth, language }) => {
     return {
-        profile: auth.profile
+        profile: auth.profile,
+        locale: language.locale
     };
 };
 

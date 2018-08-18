@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem, List, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { changeLocale } from '../actions';
 import languages from '../../locales/languages.json';
 import Colors from '../constants/Colors';
+import I18n from '../../locales/i18n';
 
 class LanguageScreen extends Component {
-    state = {
-        code: 'en'
-    }
-
+    
     showRighIcon(lang) {
-        if (lang.locale === this.state.code) {
+        if (lang.locale === this.props.locale) {
             return <Icon type='ionicon' name='ios-checkmark-circle' size={25} color={Colors.red}/>;
         }
 
@@ -18,7 +18,7 @@ class LanguageScreen extends Component {
     }
 
     onSelectLang(lang) {
-        this.setState({ code: lang.locale });
+       this.props.changeLocale(lang.locale);
     }
 
     render() {
@@ -37,6 +37,9 @@ class LanguageScreen extends Component {
                         );
                     })
                 }
+                    <ListItem
+                        title={I18n.t('logout')}
+                    />
                 </List>
             </View>
         );
@@ -49,4 +52,9 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageScreen;
+const maptStateToProps = ({ language }) => {
+    return {
+        locale: language.locale
+    };
+};
+export default connect(maptStateToProps, { changeLocale })(LanguageScreen);
