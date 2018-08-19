@@ -65,7 +65,7 @@ class SettingScreen extends Component {
                 { this.showPhoneNumberStatus() }
 
                 <ListItem 
-                    title='Language'
+                    title={I18n.t('settings.language')}
                     containerStyle={{ backgroundColor: Colors.white, marginTop: 20 }}
                     rightIcon={{ name: 'ios-globe', type: 'ionicon', size: 25, color: Colors.red }}
                     onPress={() => this.props.navigation.navigate('Language')}
@@ -74,7 +74,7 @@ class SettingScreen extends Component {
                 <View style={styles.buttonContainer}>
                     <Button
                         raised
-                        title={I18n.t('logout', { defaultValue: 'Logout' })}
+                        title={I18n.t('settings.logout', { defaultValue: 'Logout' })}
                         buttonStyle={styles.buttonStyle}
                         onPress={this.logout.bind(this)}
                     />

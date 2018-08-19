@@ -1,0 +1,17 @@
+{
+    "settings": {
+        "screen_title": "الاعدادات",
+        "logout": "تسجيل خروج",
+        "language": "اللغة"
+    },
+    "add": {
+        "screen_title": "نظم حدث",
+        "title": "العنوان"
+    },
+    "home": {
+        "screen_title": "الرئيسية"
+    },
+    "language": {
+        "screen_title": "إعدادات اللغة"
+    }
+}

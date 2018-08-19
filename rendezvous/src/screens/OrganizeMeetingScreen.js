@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { saveMeeting } from '../actions';
 import Colors from '../constants/Colors';
+import I18n from '../../locales/i18n';
 
 class OrganizeMeetingScreen extends Component {
     state = {
@@ -13,6 +14,10 @@ class OrganizeMeetingScreen extends Component {
         location: null,
         btnDisabled: true
     };
+
+    componentWillMount() {
+        I18n.locale = this.props.locale;
+    }
 
     onGoBack(location) {
         this.setState({ location, btnDisabled: false });
@@ -34,7 +39,7 @@ class OrganizeMeetingScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>{I18n.t('add.title')}</FormLabel>
                 <FormInput 
                     value={this.state.title}
                     onChangeText={(title) => this.setState({ title })} 
@@ -88,11 +93,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const maptStateToProps = ({ organize, auth }) => {
+const maptStateToProps = ({ organize, auth, language }) => {
     return {
         saving: organize.saving,
         saved: organize.saved,
         profile: auth.profile,
+        locale: language.locale
     };
 };
 

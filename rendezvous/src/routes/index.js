@@ -52,13 +52,14 @@ const AppStack = createStackNavigator({
     Details: MeetingDetails,
     Language: LanguageScreen
 }, {
-    navigationOptions: ({ navigation }) => {
+    navigationOptions: ({ navigation, screenProps }) => {
         let curentRoute; let title;
+        const { I18n } = screenProps;
         try {
             curentRoute = navigation.state.routes[navigation.state.index].routeName;
             title = curentRoute;
             if (curentRoute === 'Home') {
-                title = 'Home';
+                title = I18n.t('home.screen_title');
             }
             if (curentRoute === 'Add') {
                 title = 'Organize Meeting';

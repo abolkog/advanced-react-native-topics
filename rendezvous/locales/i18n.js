@@ -1,13 +1,12 @@
 import I18n from 'ex-react-native-i18n';
 
+import ar from './arabic.json';
+import en from './english.json';
+
 I18n.fallbacks = true;
 I18n.translations = {
-    en: {
-        'logout': 'Logout'
-    },
-    ar: {
-        'logout': 'تسجيل خروج'
-    }
+    en,
+    ar
 };
 
 I18n.locale = 'en';

@@ -1,0 +1,17 @@
+{
+    "settings": {
+        "screen_title": "Settings",
+        "logout": "Logout",
+        "language": "Language"
+    },
+    "add": {
+        "screen_title": "Organize Meeting",
+        "title": "Title"
+    },
+    "home": {
+        "screen_title": "Home"
+    },
+    "language": {
+        "screen_title": "Language"
+    }
+}

@@ -5,10 +5,18 @@ import { connect } from 'react-redux';
 import { changeLocale } from '../actions';
 import languages from '../../locales/languages.json';
 import Colors from '../constants/Colors';
-import I18n from '../../locales/i18n';
+
 
 class LanguageScreen extends Component {
     
+    static navigationOptions = ({ screenProps }) => { 
+        const { I18n } = screenProps;
+        const title = I18n.t('language.screen_title');
+        return {
+            title
+        };
+    }
+
     showRighIcon(lang) {
         if (lang.locale === this.props.locale) {
             return <Icon type='ionicon' name='ios-checkmark-circle' size={25} color={Colors.red}/>;
@@ -37,9 +45,6 @@ class LanguageScreen extends Component {
                         );
                     })
                 }
-                    <ListItem
-                        title={I18n.t('logout')}
-                    />
                 </List>
             </View>
         );
