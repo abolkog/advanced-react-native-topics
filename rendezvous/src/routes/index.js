@@ -62,10 +62,10 @@ const AppStack = createStackNavigator({
                 title = I18n.t('home.screen_title');
             }
             if (curentRoute === 'Add') {
-                title = 'Organize Meeting';
+                title = I18n.t('add.screen_title');
             }
             if (curentRoute === 'Setting') {
-                title = 'Settings';
+                title = I18n.t('settings.screen_title');
             }
         } catch (e) {
             title = 'Randezvous';
