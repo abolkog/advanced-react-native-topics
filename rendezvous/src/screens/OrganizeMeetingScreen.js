@@ -24,7 +24,7 @@ class OrganizeMeetingScreen extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.saved) {
+        if (nextProps.saved && !this.props.saved) {
             Alert.alert('meeting created');
             this.setState({ title: '', description: '', location: null });
         }

@@ -1,2 +1,2 @@
 # Randezvous 
-The app project
+The app project (React Native)
